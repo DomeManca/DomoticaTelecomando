@@ -15,28 +15,16 @@ namespace Telecomando
         private int canale;
         private string segnale;
 
-        //costruttore
-
-        public TV()
+        //produttore e modello
+        public string setProduttore(string nuovoproduttore)
         {
-            produttore = "";
-            modello = "";
+            produttore = nuovoproduttore;
+            return produttore;
         }
-
-        public TV(int ilcanale)
-        {
-            canale = ilcanale;
-        }
-
-        public TV(string ilmodello)
+        public string setModello(string ilmodello)
         {
             modello = ilmodello;
-        }
-
-        public TV(string ilproduttore, string ilmodello)
-        {
-            produttore = ilproduttore;
-            modello = ilmodello;
+            return modello;
         }
         //canale
         public int setCanale(int nuovoCanale)

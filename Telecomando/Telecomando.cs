@@ -19,6 +19,8 @@ namespace Telecomando
             InitializeComponent();
             tv = new TV();
             Reset();
+            label8.Text = "";
+            label9.Text = "";
         }
         public void Reset()
         {
@@ -26,11 +28,21 @@ namespace Telecomando
             label9.Text = "15";
             label10.Text = "";
             label6.Text = "Modello";
+            textBox2.Text = "Modello";
+            label7.Text = "Produttore";
+            textBox1.Text = "Produttore";
             label7.Text = "Produttore";
             tv.resetSegnale("Infrarossi");
             numericUpDown2.Value = 15;
             numericUpDown3.Value = 1;
         }
+        public void Spegnimento()
+        {
+            label8.Text = "1";
+            label9.Text = "15";
+            numericUpDown2.Value = 15;
+            numericUpDown3.Value = 1;
+        }1bb
         private void button1_Click(object sender, EventArgs e)
         {
             if(tv.inverti()== true)
@@ -41,6 +53,8 @@ namespace Telecomando
             else
             {
                 tv.spegni();
+                pictureBox1.BackColor = Color.White; 
+                Spegnimento();
                 pictureBox1.BackColor = Color.White;
                 Reset();
             }
@@ -59,6 +73,16 @@ namespace Telecomando
         private void numericUpDown3_ValueChanged(object sender, EventArgs e)
         {
             int n = Convert.ToInt32(numericUpDown3.Value);
+            if (n == 0)
+            {
+                numericUpDown3.Value = 999;
+                n = 999;
+            }
+            if (n == 1000)
+            {
+                numericUpDown3.Value = 1;
+                n = 1;
+            }
             if (tv.getStato() == true)
                 label8.Text = Convert.ToString(tv.setCanale(n));
         }
@@ -78,6 +102,20 @@ namespace Telecomando
                 }
             }  
         }
-
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            if (tv.getStato() == true)
+                label7.Text = tv.setProduttore(textBox1.Text);
+        }
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            if (tv.getStato() == true)
+                label6.Text = tv.setProduttore(textBox2.Text);
+        }
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Reset();
+            MessageBox.Show("Reset avvenuto con successo!", "SUCCESSO");
+        }
     }
 }
