@@ -55,8 +55,6 @@ namespace Telecomando
                 tv.spegni();
                 pictureBox1.BackColor = Color.White;
                 Spegnimento();
-                pictureBox1.BackColor = Color.White;
-                Reset();
             }
         }
         private void button2_Click(object sender, EventArgs e)
