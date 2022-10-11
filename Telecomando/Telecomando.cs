@@ -108,7 +108,7 @@ namespace Telecomando
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
             if (tv.getStato() == true)
-                label6.Text = tv.setProduttore(textBox2.Text);
+                label6.Text = tv.setModello(textBox2.Text);
         }
         private void button4_Click(object sender, EventArgs e)
         {
