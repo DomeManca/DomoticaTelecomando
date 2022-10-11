@@ -42,7 +42,7 @@ namespace Telecomando
             label9.Text = "15";
             numericUpDown2.Value = 15;
             numericUpDown3.Value = 1;
-        }1bb
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             if(tv.inverti()== true)
@@ -53,7 +53,7 @@ namespace Telecomando
             else
             {
                 tv.spegni();
-                pictureBox1.BackColor = Color.White; 
+                pictureBox1.BackColor = Color.White;
                 Spegnimento();
                 pictureBox1.BackColor = Color.White;
                 Reset();
