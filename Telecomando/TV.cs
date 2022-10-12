@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,26 +16,38 @@ namespace Telecomando
         private string segnale;
 
         //produttore e modello
-        public string setProduttore(string nuovoproduttore)
+        public void setProduttore(string nuovoProduttore)
         {
-            produttore = nuovoproduttore;
-            return produttore;
+            produttore = nuovoProduttore;
         }
-        public string setModello(string ilmodello)
+        public string getProduttore()
+        { 
+            return produttore; 
+        }
+        public void setModello(string nuovoModello)
         {
-            modello = ilmodello;
+            modello = nuovoModello;
+        }
+        public string getModello()
+        {
             return modello;
         }
         //canale
-        public int setCanale(int nuovoCanale)
+        public void setCanale(int nuovoCanale)
         {
             canale = nuovoCanale;
+        }
+        public int getCanale()
+        {
             return canale;
         }
         //volume
-        public int setVolume(int nuovoVolume)
+        public void setVolume(int nuovoVolume)
         {
             volume = nuovoVolume;
+        }
+        public int getVolume()
+        {
             return volume;
         }
         //stato
@@ -61,25 +73,28 @@ namespace Telecomando
             return stato;
         }
         //segnale
-        public string setSegnale()
+        public void switchSegnale()
         {
             if (segnale == "Bluetooth")
             {
-                segnale = "Wi-Fi";
+                setSegnale("Wi-Fi");
             }
             else if (segnale == "Wi-Fi")
             {
-                segnale = "Infrarossi";
+                setSegnale("Infrarossi");
             }
             else
             {
-                segnale = "Bluetooth";
+                setSegnale("Bluetooth");
             }
-            return segnale;
         }
-        public void resetSegnale(string v)
+        public void setSegnale(string v)
         {
             segnale = v;
+        }
+        public string getSegnale()
+        {
+            return segnale;
         }
     }
 }
