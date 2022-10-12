@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,24 +19,18 @@ namespace Telecomando
             InitializeComponent();
             tv = new TV();
             Reset();
-            label8.Text = "";
-            label9.Text = "";
         }
         public void Reset()
         {
-            label8.Text = "1";
-            label9.Text = "15";
+
+            label8.Text = "";
+            label9.Text = "";
             label10.Text = "";
-            label6.Text = "Modello";
             textBox2.Text = "Modello";
-            label7.Text = "Produttore";
             textBox1.Text = "Produttore";
-            label7.Text = "Produttore";
             tv.resetSegnale("Infrarossi");
-            numericUpDown2.Value = 15;
-            numericUpDown3.Value = 1;
         }
-        public void Spegnimento()
+        public void Accensione()
         {
             label8.Text = "1";
             label9.Text = "15";
@@ -48,13 +42,16 @@ namespace Telecomando
             if(tv.inverti()== true)
             {
                 tv.accendi();
+                Accensione();
                 pictureBox1.BackColor = Color.Red;
             }
             else
             {
                 tv.spegni();
-                pictureBox1.BackColor = Color.White;
+                pictureBox1.BackColor = Color.White; 
                 Spegnimento();
+                pictureBox1.BackColor = Color.White;
+                Reset();
             }
         }
         private void button2_Click(object sender, EventArgs e)
@@ -112,7 +109,8 @@ namespace Telecomando
         }
         private void button4_Click(object sender, EventArgs e)
         {
-            Reset();
+            if (tv.getStato() == false)
+                Reset();
             MessageBox.Show("Reset avvenuto con successo!", "SUCCESSO");
         }
     }
