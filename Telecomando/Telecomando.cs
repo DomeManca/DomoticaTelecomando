@@ -1,117 +1,100 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Telecomando
 {
-    public partial class Telecomando : Form
+    internal class TV
     {
-        private TV tv;
-        
-        public Telecomando()
-        {
-            InitializeComponent();
-            tv = new TV();
-            Reset();
-        }
-        public void Reset()
-        {
+        private string produttore;
+        private string modello;
+        private int volume;
+        private bool stato;
+        private int canale;
+        private string segnale;
 
-            label8.Text = "";
-            label9.Text = "";
-            label10.Text = "";
-            textBox2.Text = "Modello";
-            textBox1.Text = "Produttore";
-            tv.resetSegnale("Infrarossi");
-        }
-        public void Accensione()
+        //produttore e modello
+        public void setProduttore(string nuovoProduttore)
         {
-            label8.Text = "1";
-            label9.Text = "15";
-            numericUpDown2.Value = 15;
-            numericUpDown3.Value = 1;
+            produttore = nuovoProduttore;
         }
-        private void button1_Click(object sender, EventArgs e)
+        public string getProduttore()
+        { 
+            return produttore; 
+        }
+        public void setModello(string nuovoModello)
         {
-            if(tv.inverti()== true)
+            modello = nuovoModello;
+        }
+        public string getModello()
+        {
+            return modello;
+        }
+        //canale
+        public void setCanale(int nuovoCanale)
+        {
+            canale = nuovoCanale;
+        }
+        public int getCanale()
+        {
+            return canale;
+        }
+        //volume
+        public void setVolume(int nuovoVolume)
+        {
+            volume = nuovoVolume;
+        }
+        public int getVolume()
+        {
+            return volume;
+        }
+        //stato
+        public void accendi()
+        {
+            setStato(true);
+        }
+        public void spegni()
+        {
+            setStato(false);
+        }
+        private void setStato(bool nuovoStato)
+        {
+            stato = nuovoStato;
+        }
+        public bool getStato()
+        {
+            return stato;
+        }
+        public bool inverti()
+        {
+            setStato(!stato);
+            return stato;
+        }
+        //segnale
+        public void switchSegnale()
+        {
+            if (segnale == "Bluetooth")
             {
-                tv.accendi();
-                Accensione();
-                pictureBox1.BackColor = Color.Red;
+                setSegnale("Wi-Fi");
+            }
+            else if (segnale == "Wi-Fi")
+            {
+                setSegnale("Infrarossi");
             }
             else
             {
-                tv.spegni();
-                pictureBox1.BackColor = Color.White; 
-                Spegnimento();
-                pictureBox1.BackColor = Color.White;
-                Reset();
+                setSegnale("Bluetooth");
             }
         }
-        private void button2_Click(object sender, EventArgs e)
+        public void setSegnale(string v)
         {
-            if (tv.getStato() == true)
-                label10.Text = tv.setSegnale();
+            segnale = v;
         }
-        private void numericUpDown2_ValueChanged(object sender, EventArgs e)
+        public string getSegnale()
         {
-            int n = Convert.ToInt32(numericUpDown2.Value);
-            if (tv.getStato() == true)
-                label9.Text = Convert.ToString(tv.setVolume(n));
-        }
-        private void numericUpDown3_ValueChanged(object sender, EventArgs e)
-        {
-            int n = Convert.ToInt32(numericUpDown3.Value);
-            if (n == 0)
-            {
-                numericUpDown3.Value = 999;
-                n = 999;
-            }
-            if (n == 1000)
-            {
-                numericUpDown3.Value = 1;
-                n = 1;
-            }
-            if (tv.getStato() == true)
-                label8.Text = Convert.ToString(tv.setCanale(n));
-        }
-        private void button3_Click(object sender, EventArgs e)
-        {
-            if (tv.getStato() == true)
-            {
-                if(label9.Text == "0")
-                {
-                    label9.Text = Convert.ToString(numericUpDown2.Value);
-                    numericUpDown2.Enabled = true;
-                }
-                else
-                {
-                    label9.Text = "0";
-                    numericUpDown2.Enabled = false;
-                }
-            }  
-        }
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            if (tv.getStato() == true)
-                label7.Text = tv.setProduttore(textBox1.Text);
-        }
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-            if (tv.getStato() == true)
-                label6.Text = tv.setModello(textBox2.Text);
-        }
-        private void button4_Click(object sender, EventArgs e)
-        {
-            if (tv.getStato() == false)
-                Reset();
-            MessageBox.Show("Reset avvenuto con successo!", "SUCCESSO");
+            return segnale;
         }
     }
 }
