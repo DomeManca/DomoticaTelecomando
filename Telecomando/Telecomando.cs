@@ -36,7 +36,8 @@ namespace Telecomando
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            if(tv.inverti()== true)
+            tv.inverti();
+            if(tv.getStato()== true)
             {
                 tv.accendi();
                 Accensione();
