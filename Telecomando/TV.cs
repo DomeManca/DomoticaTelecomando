@@ -67,10 +67,9 @@ namespace Telecomando
         {
             return stato;
         }
-        public bool inverti()
+        public void inverti()
         {
             setStato(!stato);
-            return stato;
         }
         //segnale
         public void switchSegnale()
